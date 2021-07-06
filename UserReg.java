@@ -17,9 +17,11 @@ public class UserReg {
 		Matcher match = patt.matcher(firstname);
 		return match.matches();
 	}
-	/* Uc2: validating LastName and if pattern matches method returns true otherwise
+
+	/*
+	 * Uc2: validating LastName and if pattern matches method returns true otherwise
 	 * it return false.
-	 */	
+	 */
 	public static boolean isLastName(String lastname) {
 		String regex = "^[A-Z]{1}[a-z]{2,}";
 		Pattern patt2 = Pattern.compile(regex);
@@ -29,6 +31,7 @@ public class UserReg {
 		Matcher match2 = patt2.matcher(lastname);
 		return match2.matches();
 	}
+
 	/*
 	 * Uc3: validating Email
 	 */
@@ -40,6 +43,7 @@ public class UserReg {
 			return "invalid";
 		}
 	}
+
 	/*
 	 * Uc4: validating phone number
 	 */
@@ -53,6 +57,19 @@ public class UserReg {
 		return match.matches();
 	}
 
+	/*
+	 * Uc5: Validating password Rule 1: should have atleast 8 characters
+	 */
+	public static boolean isPasswordValid(String password) {
+		String regex = "^[a-z]{8,}";
+		Pattern patt = Pattern.compile(regex);
+		if (password == null) {
+			return false;
+		}
+		Matcher match = patt.matcher(password);
+		return match.matches();
+	}
+
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter firstname:");
@@ -63,6 +80,8 @@ public class UserReg {
 		String email = input.nextLine();
 		System.out.println("Enter mobile number");
 		String phoneNo = input.nextLine();
+		System.out.println("Enter password");
+		String password = input.nextLine();
 		if (isFirstName(firstname) == true) {
 			System.out.println("Firstname is Correct");
 		} else {
@@ -78,6 +97,11 @@ public class UserReg {
 			System.out.println("Phone Number is correct");
 		} else {
 			System.out.println("Phone Number is Incorrect");
+		}
+		if (isPasswordValid(password) == true) {
+			System.out.println("Password is Valid");
+		} else {
+			System.out.println("Password is Invalid");
 		}
 
 	}
