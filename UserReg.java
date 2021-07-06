@@ -1,5 +1,6 @@
 package userReg;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.*;
 
@@ -58,11 +59,9 @@ public class UserReg {
 	}
 
 	/*
-	 * Uc5: Validating password
-	 * Rule 1: should have atleast 8 characters
-	 * Uc6: Rule 2: should have atleast one uppercase letter
-	 * Uc7: Rule 3: should have atleast one number
-	 * Uc8: Rule 4: should have atleast one special character
+	 * Uc5: Validating password Rule 1: should have atleast 8 characters Uc6: Rule
+	 * 2: should have atleast one uppercase letter Uc7: Rule 3: should have atleast
+	 * one number Uc8: Rule 4: should have atleast one special character
 	 */
 	public static boolean isPasswordValid(String password) {
 		String regex = "^[a-zA-Z0-9]+[@#$%&*_+=!?]?${8,}";
@@ -72,6 +71,21 @@ public class UserReg {
 		}
 		Matcher match = patt.matcher(password);
 		return match.matches();
+	}
+
+	// Uc9: All types of email
+	// adding email to array-list
+	public static void addToEmailList(String emails) {
+		// Add email data here.So In generics String has taken.Now arrayList Object can
+		// accepts only String data.
+		ArrayList<String> email = new ArrayList<String>();
+		// add is a default method in an ArrayList and used to add elements to the
+		// ArrayList.
+		email.add(emails);
+		// size() method returns total number of emails present inside the ArrayList.
+		for (int i = 0; i < email.size(); i++) {
+			System.out.println(email.get(i) + ": " + validateEmail(email.get(i)));
+		}
 	}
 
 	public static void main(String[] args) {
@@ -108,6 +122,29 @@ public class UserReg {
 			System.out.println("Password is Invalid");
 		}
 
+		// valid emails
+		addToEmailList("abc@gmail.com");
+		addToEmailList("abc-100@gmail.com");
+		addToEmailList("abc.100@gmail.com");
+		addToEmailList("abc-100@Abc.com");
+		addToEmailList("abc-100@Abc.net");
+		addToEmailList("abc.100@Abc.com.au");
+		addToEmailList("abc@1.com");
+		addToEmailList("abc@gmail.com.com");
+		addToEmailList("abc+100@yahoo.com");
+
+		// invalid emails
+		addToEmailList("abc@.com.my");
+		addToEmailList("abc123@gmail.a");
+		addToEmailList("abc123@.com");
+		addToEmailList("abc123@.com.com");
+		addToEmailList(".abc@Abc.com");
+		addToEmailList("abc()*@gmail.com");
+		addToEmailList("abc@%*.com");
+		addToEmailList("abc..2002@gmail.com");
+		addToEmailList("abc.@gmail.com");
+		addToEmailList("abc@abc@gmail.com");
+		addToEmailList("abc@gmail.com.1a");
 	}
 
 }
